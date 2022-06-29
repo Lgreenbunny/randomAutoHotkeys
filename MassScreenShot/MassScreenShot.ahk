@@ -11,6 +11,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; make sure to initialize variables with the 
 ; correct data type to keep things in order
 
+; open instructions png
+Run, Possible Instructions.png
+
 
 
 CoordMode, Mouse, Screen
@@ -120,7 +123,7 @@ OneSS(){ ; take the ss with global P1 and P2 at a certain speed
 	SendEvent, {LWin Down}{LShift Down}s{LWin Up}{LShift Up}
 	
 	; SendEvent does the smooth drags
-	Sleep 550
+	Sleep 650
 	SendEvent {Click %xP1% %yP1% Down}
 
 	; Sleep 250

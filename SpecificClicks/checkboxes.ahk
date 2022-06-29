@@ -10,8 +10,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; 9 closes
 
 CoordMode, Mouse, Screen
-SetDefaultMouseSpeed, 80
-; #SingleInstance force
+SetDefaultMouseSpeed, 3
+#SingleInstance force
 
 
 ; arrays start at 1 normally.
