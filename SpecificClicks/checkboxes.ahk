@@ -95,9 +95,9 @@ Pushy(toX, toY, toType){
 	type.Push(toType) ; # of click
 
 	if(x.Length() > 20){
-		x.Pop()
-		y.Pop()
-		type.Pop()
+		x.RemoveAt(1)
+		y.RemoveAt(1)
+		type.RemoveAt(1)
 	}
 }
 
