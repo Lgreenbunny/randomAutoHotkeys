@@ -29,28 +29,31 @@ type := []
 return ; probably not needed but oh well
 
 
-3::
+3:: ; empties array
 	Empti()
 return
 
-
-q & Tab::
-	Suspend, Toggle
-return
-
-
-; maybe make a function to handle arrays
-; store coord (max 20) plus Lclick 
-; top left key
+; store coord (max 20) but doesn't click after 
+; top left key on the querty keyboard under esc
 `::
 	MouseGetPos, xTemp, yTemp
+	Pushy(xTemp, yTemp, 0)
+return
+
+; this one clicks, though.
+1::
+	MouseGetPos, xTemp, yTemp
 	Pushy(xTemp, yTemp, 1)
+return
+
+~:: ; shifted-version of the top-left ` key
+	Suspend, Toggle
 return
 
 
 
 ; click all coord
-1::
+5::
 	i := 1
 	while i < x.Length()+1 {
 		; Debug1(x[i], y[i])
