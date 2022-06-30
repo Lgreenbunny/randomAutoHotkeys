@@ -25,17 +25,17 @@ type := []
 
 
 9::
-ExitApp ;  plain Exit only kills the thread
+	ExitApp ;  plain Exit only kills the thread
 return ; probably not needed but oh well
 
 
 3::
-Empti()
+	Empti()
 return
 
 
 q & Tab::
-Suspend, Toggle
+	Suspend, Toggle
 return
 
 
@@ -43,36 +43,33 @@ return
 ; store coord (max 20) plus Lclick 
 ; top left key
 `::
-MouseGetPos, xTemp, yTemp
-x.Push(xTemp)
-y.Push(yTemp)
-type.Push(1) ; # of click
-
-if(x.Length() > 20){
-	x.Pop()
-	y.Pop()
-	type.Pop()
-}
+	MouseGetPos, xTemp, yTemp
+	Pushy(xTemp, yTemp, 1)
 return
 
 
 
 ; click all coord
 1::
-
-i := 1
-while i < x.Length()+1 {
-	; Debug1(x[i], y[i])
-	Cleeck(x[i], y[i], type[i])
-	i++
-}
+	i := 1
+	while i < x.Length()+1 {
+		; Debug1(x[i], y[i])
+		Cleeck(x[i], y[i], type[i])
+		i++
+	}
 return
+
+
+
+
+
 
 
 ; functions
 
+
+; Lclick coord x y and number of click
 Cleeck(x, y, z){
-	; Lclick coord x y and number of click
 	SendEvent, {Click %x% %y% Left %z%} 
 	Sleep 25
 }
@@ -87,6 +84,24 @@ Empti(){
 	type.RemoveAt(1, i)
 	
 }
+
+; pushes the parameters in to the arrays in order, but if
+	; the limit is reached, it pops the oldest coordinates
+Pushy(toX, toY, toType){
+	global
+	
+	x.Push(toX)
+	y.Push(toY)
+	type.Push(toType) ; # of click
+
+	if(x.Length() > 20){
+		x.Pop()
+		y.Pop()
+		type.Pop()
+	}
+}
+
+
 
 Debug1(x, y){
 	MsgBox % "x is " . x . "`nand y is " . y
