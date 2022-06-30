@@ -10,44 +10,50 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; 9 closes
 
 CoordMode, Mouse, Screen
-SetDefaultMouseSpeed, 3
+
+; normally 3
+SetDefaultMouseSpeed, 1
 #SingleInstance force
 
 
 ; arrays start at 1 normally.
 x := []
 y := []
+type := []
+
+; hotkeys
 
 
 9::
 ExitApp ;  plain Exit only kills the thread
 return ; probably not needed but oh well
 
+
 3::
 Empti()
 return
+
 
 q & Tab::
 Suspend, Toggle
 return
 
 
-
-
-; store coord (max 20)
+; maybe make a function to handle arrays
+; store coord (max 20) plus Lclick 
 ; top left key
 `::
 MouseGetPos, xTemp, yTemp
 x.Push(xTemp)
 y.Push(yTemp)
+type.Push(1) ; # of click
+
 if(x.Length() > 20){
 	x.Pop()
 	y.Pop()
+	type.Pop()
 }
 return
-
-
-
 
 
 
@@ -57,24 +63,28 @@ return
 i := 1
 while i < x.Length()+1 {
 	; Debug1(x[i], y[i])
-	Cleeck(x[i], y[i])
+	Cleeck(x[i], y[i], type[i])
 	i++
 }
 return
 
-Cleeck(x, y){
-	SendEvent, {Click %x% %y%}
+
+; functions
+
+Cleeck(x, y, z){
+	; Lclick coord x y and number of click
+	SendEvent, {Click %x% %y% Left %z%} 
 	Sleep 25
 }
-
-
 
 
 ; empty coords
 Empti(){
 	global
-	x.RemoveAt(1,x.length())
-	y.RemoveAt(1,y.length())
+	i := x.length()
+	x.RemoveAt(1, i)
+	y.RemoveAt(1, i)
+	type.RemoveAt(1, i)
 	
 }
 
