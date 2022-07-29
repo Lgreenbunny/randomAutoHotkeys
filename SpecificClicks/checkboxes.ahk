@@ -12,14 +12,15 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 CoordMode, Mouse, Screen
 
 ; normally 3
-SetDefaultMouseSpeed, 1
-#SingleInstance force
+SetDefaultMouseSpeed, 3
+#SingleInstance Force
 
 
 ; arrays start at 1 normally.
 x := []
 y := []
 type := []
+
 
 ; hotkeys
 
@@ -31,6 +32,16 @@ return ; probably not needed but oh well
 
 3:: ; empties array
 	Empti()
+return
+
+
+4:: ; makes pause command for queue
+		Pushy(0, 0, 4)
+return
+
+6:: ; unpause the thread that was paused within the queue IF there's a paused thread
+	; can't unpause thread from the same hotkey that you started the pause with
+	Pause, Off ; toggle pause
 return
 
 ; store coord (max 20) but doesn't click after 
@@ -53,7 +64,7 @@ return
 
 
 ; click all coord
-5::
+5:: ; start running the loop
 	i := 1
 	while i < x.Length()+1 {
 		; Debug1(x[i], y[i])
@@ -72,8 +83,15 @@ return
 
 
 ; Lclick coord x y and number of click
-Cleeck(x, y, z){
-	SendEvent, {Click %x% %y% Left %z%} 
+Cleeck(xP, yP, zP){
+	
+	global
+	if(zP = 4){ ; pause if the queue has a 4
+		Pause, On
+	}
+	else{ ; click normally
+		SendEvent, {Click %xP% %yP% Left %zP%} 
+	}
 	Sleep 25
 }
 
@@ -103,6 +121,7 @@ Pushy(toX, toY, toType){
 		type.RemoveAt(1)
 	}
 }
+
 
 
 
