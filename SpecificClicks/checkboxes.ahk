@@ -12,7 +12,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 CoordMode, Mouse, Screen
 
 ; normally 3
-SetDefaultMouseSpeed, 3
+SetDefaultMouseSpeed, 5
 #SingleInstance Force
 
 
@@ -30,7 +30,13 @@ type := []
 return ; probably not needed but oh well
 
 
-3:: ; empties array
+2::	; removes the last added entry in the queue
+; if there's nothing in the queue nothing is done though
+	Popp()
+return
+
+
+#:: ; empties entire queue array
 	Empti()
 return
 
@@ -120,6 +126,14 @@ Pushy(toX, toY, toType){
 		y.RemoveAt(1)
 		type.RemoveAt(1)
 	}
+}
+
+Popp(){
+	global
+	
+	x.Pop()
+	y.Pop()
+	type.Pop()
 }
 
 
