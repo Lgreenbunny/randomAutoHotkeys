@@ -33,7 +33,9 @@ Using a series of hotkeys, you can screenshot the screen easily using the Win+Sh
 - screenshot that area (press the key again to screenshot the exact spot as much as you want)
 - move that one area and screenshot again.
 - mark new spots for that current selected area to be screenshotted with in a queue then screenshot them all at once.
-When the code runs, it opens the instruction image with the default hotkeys and graphical examples (graphic). At a later date I may just bind opening the instructions to a hotkey instead.
+
+When the code runs, it opens the instruction image with the default hotkeys and graphical examples (graphic). After the code screenshots for you, you can access them using `Win + V` or with a different clipboard program. 
+
 
 If you need any help with some of the programs or you want new features, let me know.
 
