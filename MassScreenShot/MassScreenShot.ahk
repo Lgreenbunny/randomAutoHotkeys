@@ -16,8 +16,17 @@ Run, Possible Instructions.png
 
 
 
+; Debugging window
+; #KeyHistory 40
+; KeyHistory
+
+
+
 CoordMode, Mouse, Screen
-SetDefaultMouseSpeed, 4
+SetDefaultMouseSpeed, 6
+; sets sendevent keydelay with pressduration inbetween each keypress
+; you could adjust/comment this out to make it faster but some screenshots may be skipped
+SetKeyDelay, 80, 40  
 
 ; points
 xP1 := 0
@@ -37,18 +46,18 @@ coordsY := []
 
 
 q & Tab::
-Suspend, Toggle
+	Suspend, Toggle
 return
 
 
 1:: ; store a mouse coordinate in the thing 
-; max 10
-MouseGetPos, xTemp, yTemp
-coordsX.Push(xTemp)
-coordsY.Push(yTemp)
-if(coordsX.Length() > 10){
-	coordsX.Pop(xTemp)
-	coordsY.Pop(yTemp)
+	; max 10
+	MouseGetPos, xTemp, yTemp
+	coordsX.Push(xTemp)
+	coordsY.Push(yTemp)
+	if(coordsX.Length() > 10){
+		coordsX.Pop(xTemp)
+		coordsY.Pop(yTemp)
 }
 
 ; Tests()
@@ -56,12 +65,12 @@ return
 
 
 -:: ; set the start position
-MouseGetPos, xP1, yP1 ; %var% to call
+	MouseGetPos, xP1, yP1 ; %var% to call
 return
 
 
 =:: ; set the end position
-MouseGetPos, xP2, yP2
+	MouseGetPos, xP2, yP2
 return
 
 
@@ -78,7 +87,7 @@ MoveCoordi(tempx, tempy)
 return
 
 MoveCoordi(tempX, tempY){ 
-; using the temp x/y coords move the ss area
+	; using the temp x/y coords move the ss area
 	
 	global xP1, yP1, xP2, yP2
 	diffX := xP1 - tempx
@@ -98,25 +107,25 @@ MoveCoordi(tempX, tempY){
 
 
 0:: 
-; take the shot of screen regularly
-OneSS()
+	; take the shot of screen regularly
+	OneSS()
 return
 
 4:: ; SS all the coords
-; loop. array goes from 1 to 10. Loop var should go from 10 to 1 & end at 0
-; for , in tho
-for i, element in coordsX {
-	MoveCoordi(coordsX[i], coordsY[i])
-	OneSS()
-	Sleep 256 ; in
-}
+	; loop. array goes from 1 to 10. Loop var should go from 10 to 1 & end at 0
+	; for , in tho
+	for i, element in coordsX {
+		MoveCoordi(coordsX[i], coordsY[i])
+		OneSS()
+		Sleep 256 ; in
+	}
 return
 
 
 OneSS(){ ; take the ss with global P1 and P2 at a certain speed 
-; pretty much reformat of the old hotkey 0 but useable everywhere
-;	Send <3+s 
-; <3 is win, + is shift
+	; pretty much reformat of the old hotkey 0 but useable everywhere
+	;	Send <3+s 
+	; <3 is win, + is shift
 	
 	global
 	
@@ -140,7 +149,7 @@ OneSS(){ ; take the ss with global P1 and P2 at a certain speed
 
 
 2:: ; empty array
-ArrayEmpty()
+	ArrayEmpty()
 return
 
 ArrayEmpty(){ ; clears arrays
@@ -156,7 +165,7 @@ ArrayEmpty(){ ; clears arrays
 
 
 AddDot(){ ; add a dot where all current coordinates are
-; should be undone whenever array's empty or when you're about to SS
+	; should be undone whenever array's empty or when you're about to SS
 	
 }
 
