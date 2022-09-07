@@ -20,7 +20,7 @@ SetDefaultMouseSpeed, 5
 #SingleInstance Force
 
 ; relative click mode on is 1
-rel := 1
+rel := 0
 firstRel := 0
 
 ; arrays start at 1 normally.
@@ -41,12 +41,12 @@ lastY := 0
 ; hotkeys
 
 
-9::
+(::
 	ExitApp ;  plain Exit only kills the thread
 return ; probably not needed but oh well
 
 
-2::	; removes the last added entry in the queue
+3::	; removes the last added entry in the queue
 ; if there's nothing in the queue nothing is done though
 	Popp()
 return
