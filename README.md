@@ -17,10 +17,10 @@ There's a few settings at the top of the script that can be changed:
     - `1` left clicks
     - `4` to insert a pause 
 - To clear the whole pattern of clicks, you can press `Shift + 3` or `#`.
-    - To only delete the most recent key press entered, press `2`
+    - To only delete the most recent key press entered, press `3`
 - To start clicking the pattern later, you can use `5`  
     - to unpause the script, press `6` 
-- Finally, press `Shift + `\` or `~` to suspend the script and press `9` to close it completely.
+- Finally, press `Shift + `\` or `~` to suspend the script and press `Shift + 9` or `(` to close it completely.
 
 ## Relative mode
 This mostly the same compared to the default mode but the click pattern starts at your mouse's current position instead of a set position. To use this mode, change the 0 in `rel := 0` near the top of the code to a 1. 
