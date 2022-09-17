@@ -3,16 +3,6 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-; shift+`(~) suspends
-; ` marks a non-click movement 
-; 1 adds a click to the queue
-; 2 removes the last coordinate put in
-; Shift+3 (#) empties
-; 4 adds a pause to the queue
-; 5 clicks all saved clicks (up to 20)
-; 6 unpauses a paused sequence
-; 9 closes
-
 CoordMode, Mouse, Screen
 
 ; normally 3
@@ -20,7 +10,7 @@ SetDefaultMouseSpeed, 5
 #SingleInstance Force
 
 ; relative click mode on is 1
-rel := 0
+rel := 1
 firstRel := 0
 
 ; arrays start at 1 normally.
